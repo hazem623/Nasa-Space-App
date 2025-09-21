@@ -46,11 +46,17 @@ header {
     display: flex; justify-content: space-between; 
     align-items: center;
 }
-h1 {
+h1 ,
+p {
     cursor: pointer;
     font-family: 'Orbitron', sans-serif;
     font-size: 2.5rem; color: #fff;
     text-shadow: 0 0 5px #00ccff;
+    margin-left: 25px;
+    transition: all 0.3s ;
+}
+h1:hover {
+    text-shadow: 1px 3px 8px silver;
 }
 .distance {
     display: flex; 
@@ -98,12 +104,29 @@ body {
     overflow-x: hidden;
 }
 header {
-    background: rgba(17, 17, 17, 0.8);
-    border: 1px solid #555;
-    padding: 15px;
+    background: linear-gradient(135deg, #0f2027 0%, #2c5364 60%, #000 100%);
+    border-bottom-left-radius:15px ;
+    border-bottom-right-radius:15px ;
+    padding: 18px 32px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    box-shadow: 0 0 32px #00ccff55, 0 0 80px #ffcc0033;
+    position: relative;
+    overflow: hidden;
+}
+header::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url('https://www.transparenttextures.com/patterns/stardust.png'), radial-gradient(circle at 60% 40%, #00ccff33 0%, transparent 70%);
+    opacity: 0.25;
+    z-index: 0;
+    pointer-events: none;
+}
+header * {
+    position: relative;
+    z-index: 1;
 }
 header h1 {
     font-size: 2.5rem;
@@ -134,7 +157,7 @@ header p {
 }
 .hero-section {
     position: relative;
-    height: calc(100vh - 101.68px);
+    height: calc(100vh - 108px);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -163,31 +186,30 @@ header p {
 }
 .hero-content h1 {
     font-size: 3rem;
-    color: #ffcc00;
-    text-shadow: 0 0 5px #00ccff;
 }
-.hero-content h2 {
-    font-size: 1.8rem;
-    color: #00ccff;
-    margin-bottom: 1rem;
-}
-.hero-content p {
-    font-size: 1.2rem;
-    line-height: 1.6;
-    color: #ddd;
-}
-.cta-button {
+.links .cta-button {
+    font-size: 17em;
+    max-width: 450px;
     display: inline-block;
-    padding: 15px 30px;
-    background: #ff5733;
+    padding: 20px;
+    background: linear-gradient(90deg, #0f2027 0%, #2c5364 100%);
     color: #fff;
+    box-shadow: 0 4px 20px #00ccff80, 0 0 40px #fff2;
+    border: none;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-shadow: 0 0 8px #00ccff, 0 0 2px #fff;
+    border: 1px solid #00ccff;
     font-size: 1.5rem;
     border-radius: 5px;
     margin-top: 1rem;
-    transition: background 0.3s;
+    transition: all 0.3s;
 }
 .cta-button:hover {
-    background: #ff704d;
+    box-shadow: 0 0 30px #00ccff, 0 0 60px #ffcc00, 0 0 90px #ff704d;
+    filter: brightness(1.2) saturate(1.5);
+    transform:  rotate(-2deg);
+    margin: 33px;
 }
 .meteor-main {
     position: absolute;
@@ -203,6 +225,35 @@ header p {
 @keyframes meteor-fall {
     0% { transform: translate(0, -50vh); opacity: 1; }
     100% { transform: translate(20vw, 80vh); opacity: 0; }
+}
+#asteroid-name {
+    max-width: fit-content;
+    margin: 25px 0px;
+    color: #fff;
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 5px;
+    font-weight: bold;
+    padding: 12px 32px;
+    border-radius: 16px;
+    background: linear-gradient(90deg, #0f2027 0%, #2c5364 50%, #00ccff 100%);
+    box-shadow:
+        0 0 40px #00ccff88,
+        0 0 80px #ffcc0044,
+        0 0 120px #ff573344,
+        0 0 8px #fff;
+    text-shadow:
+        0 0 18px #00ccff,
+        0 0 40px #fff,
+        0 0 8px #ff5733,
+        0 0 24px #ffcc00;
+    animation: asteroid-glow 2.5s infinite alternate, asteroid-float 6s infinite ease-in-out;
+    transition: 
+        background 0.4s,
+        box-shadow 0.4s,
+        letter-spacing 0.3s,
+        transform 0.3s;
+    position: relative;
+    z-index: 4;
 }
 #earth {
     position: absolute;
@@ -366,9 +417,13 @@ header p {
   }
   #asteroid-name { font-size: clamp(1.2rem, 7.5vw, 1.6rem); letter-spacing: 1px; }
 }
-
+.links {
+    display: flex;
+    flex-direction: column;
+}
 #earth-gif img {
-    width: 100%;
+    transform: translateY(80px);
+    width: 90%;
     height: auto;
     border-radius: 50%;
     -webkit-mask-image: radial-gradient(circle, white 70%, transparent 100%);
